@@ -37,19 +37,21 @@ Este repositorio contiene la estructura y configuración base para un sistema de
 Sigue estos pasos para clonar y ejecutar el proyecto en tu entorno local:
 
 1. Clonar el repositorio
-Bash
-git clone [https://github.com/MarceloDiaz1375/python_entrega7.git](https://github.com/MarceloDiaz1375/python_entrega7.git)
-cd python_entrega5
+
+git clone https://github.com/MarceloDiaz1375/python_entrega7.git
+
 2. Crear y activar el entorno virtual
 
 - En Windows (PowerShell):
 
 python -m venv venv
+
 .\venv\Scripts\activate
 
 - En Linux / macOS:
 
 python3 -m venv venv
+
 source venv/bin/activate
 
 3. Instalar las dependencias
