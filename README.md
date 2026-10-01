@@ -41,28 +41,28 @@ Bash
 git clone [https://github.com/MarceloDiaz1375/python_entrega7.git](https://github.com/MarceloDiaz1375/python_entrega7.git)
 cd python_entrega5
 2. Crear y activar el entorno virtual
-En Windows (PowerShell):
 
-**PowerShell**
+- En Windows (PowerShell):
+
 python -m venv venv
 .\venv\Scripts\activate
 
-En Linux / macOS:
+- En Linux / macOS:
 
-**Bash**
 python3 -m venv venv
 source venv/bin/activate
+
 3. Instalar las dependencias
 Con el entorno virtual activo, instala las librerías necesarias mediante el archivo requirements.txt:
 
-**Bash**
 pip install -r requirements.txt
-4. Levantar el servidor de desarrollo
-Ejecuta el servidor local de Django:
 
-**Bash**
+4. Levantar el servidor de desarrollo
+- Ejecuta el servidor local de Django:
+
 python manage.py runserver
-Abre tu navegador e ingresa a:
+
+- Abre tu navegador e ingresa a:
 http://127.0.0.1:8000/
 
 `Si ves la pantalla de bienvenida predeterminada de Django, el entorno y la estructura inicial se encuentran correctamente configurados.`
