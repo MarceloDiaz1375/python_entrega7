@@ -11,25 +11,40 @@ Este repositorio contiene la estructura y configuración base para un sistema de
 - **Configuración Regional:** Adaptado para español de Argentina (`es-ar`) y zona horaria `America/Argentina/Buenos_Aires`.
 
 ```text
-.
-├── blog_project/          # Configuración del proyecto Django
+blog_project/
+│
+├── manage.py
+├── README.md
+├── requirements.txt
+│
+├── blog_project/
 │   ├── __init__.py
-│   ├── asgi.py
 │   ├── settings.py
 │   ├── urls.py
+│   ├── asgi.py
 │   └── wsgi.py
-├── posts/                 # App principal del blog
-│   ├── migrations/
-│   ├── __init__.py
-│   ├── admin.py
-│   ├── apps.py
-│   ├── models.py
-│   ├── tests.py
-│   └── views.py
-├── .gitignore             # Archivos y carpetas excluidos de Git
-├── manage.py              # Script de gestión de Django
-├── README.md              # Documentación del proyecto
-└── requirements.txt       # Dependencias del proyecto
+│
+└── posts/
+    ├── __init__.py
+    ├── admin.py
+    ├── apps.py
+    ├── models.py
+    ├── tests.py
+    ├── urls.py
+    ├── views.py
+    │
+    ├── templates/
+    │   └── posts/
+    │       ├── base.html
+    │       ├── inicio.html
+    │       ├── lista_posts.html
+    │       └── acerca.html
+    │
+    └── static/
+        └── posts/
+            └── css/
+                └── estilos.css
+
 ```
 
 
