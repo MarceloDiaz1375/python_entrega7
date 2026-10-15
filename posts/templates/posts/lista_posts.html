@@ -1,0 +1,18 @@
+{% extends "posts/base.html" %}
+
+{% block title %}Lista de Posts | Mi Blog{% endblock %}
+
+{% block content %}
+    <h2>Lista de Posts</h2>
+    {% if posts %}
+        <ul>
+            {% for post in posts %}
+                <li>
+                    <a>{{ post.titulo }}</a> - {{ post.fecha_creacion }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay posts publicados.</p>
+    {% endif %}
+{% endblock %}
