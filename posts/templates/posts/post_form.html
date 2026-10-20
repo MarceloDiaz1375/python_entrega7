@@ -1,0 +1,13 @@
+{% extends "posts/base.html" %}
+
+{% block title %}Formulario de Post | Mi Blog{% endblock %}
+
+{% block content %}
+    <h2>{% if post %}Editar Post{% else %}Crear Post{% endif %}</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% if post %}Actualizar{% else %}Crear{% endif %}</button>
+        <button type="button" onclick="window.location.href='{% url 'lista_posts' %}'">Cancelar</button>
+    </form>
+{% endblock %}

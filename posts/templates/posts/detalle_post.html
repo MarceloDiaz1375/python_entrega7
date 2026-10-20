@@ -1,0 +1,17 @@
+{% extends "posts/base.html" %}
+
+{% block title %}Detalle del Post | Mi Blog{% endblock %}
+
+{% block content %}
+    <h2>{{ post.titulo }}</h2>
+    <p><strong>Autor:</strong> {{ post.autor }}</p>
+    <p><strong>Fecha de creación:</strong> {{ post.fecha_creacion }}</p>
+    <p><strong>Contenido:</strong></p>
+    <div>{{ post.contenido|linebreaks }}</div>
+    {% if post.imagen %}
+        <img src="{{ post.imagen.url }}" alt="Imagen del post" width="400">
+        <p></p>
+    {% endif %}
+    <button type="button" onclick="window.location.href='{% url 'editar_post' post.slug %}'">Editar Post</button>
+    <button type="button" onclick="window.location.href='{% url 'eliminar_post' post.slug %}'">Eliminar Post</button>
+{% endblock %}
