@@ -17,6 +17,17 @@
             <a href="{% url 'lista_posts' %}">Lista de Posts</a>
             <a href="{% url 'contacto' %}">Contacto</a>
             <a href="{% url 'crear_post' %}">Crear Post</a>
+            <span class="nav-right">
+                {% if user.is_authenticated %}
+                    Bienvenido, {{ user.username }}!
+                    <form method="post" action="{% url 'logout' %}" class="inline">
+                        {% csrf_token %}
+                        <button type="submit">Cerrar sesión</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}">Iniciar sesión</a>
+                {% endif %}
+            </span>
         </nav>
     </header>
     <main class="site-main">
