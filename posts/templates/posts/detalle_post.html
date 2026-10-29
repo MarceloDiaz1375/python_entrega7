@@ -4,7 +4,7 @@
 
 {% block content %}
     <h2>{{ post.titulo }}</h2>
-    <p><strong>Autor:</strong> {{ post.autor }}</p>
+    <p><strong>Autor:</strong> {{ post.autor.username }}</p>
     <p><strong>Fecha de creación:</strong> {{ post.fecha_creacion }}</p>
     <p><strong>Contenido:</strong></p>
     <div>{{ post.contenido|linebreaks }}</div>
@@ -12,6 +12,8 @@
         <img src="{{ post.imagen.url }}" alt="Imagen del post" width="400">
         <p></p>
     {% endif %}
-    <button type="button" onclick="window.location.href='{% url 'editar_post' post.slug %}'">Editar Post</button>
-    <button type="button" onclick="window.location.href='{% url 'eliminar_post' post.slug %}'">Eliminar Post</button>
+    {% if puede_editar %}
+        <button type="button" onclick="window.location.href='{% url 'editar_post' post.slug %}'">Editar Post</button>
+        <button type="button" onclick="window.location.href='{% url 'eliminar_post' post.slug %}'">Eliminar Post</button>
+    {% endif %}
 {% endblock %}

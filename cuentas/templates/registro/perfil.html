@@ -1,0 +1,20 @@
+{% extends "posts/base.html" %}
+{% load static %}
+{% block content %}
+    <h1>Mi perfil</h1>
+    {% if perfil.avatar %}
+        <img src="{{ perfil.avatar.url }}" alt="Avatar" class="avatar-post" />
+    {% else %}
+        <img src="{% static 'images/default-user.png' %}" alt="Avatar por defecto" class="avatar-post" />
+    {% endif %}
+    <p><strong>Usuario:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Biografía:</strong> {{ perfil.biografia }}</p>
+    {% if perfil.link_web %}
+        <p>
+            <strong>Web:</strong>
+            <a href="{{ perfil.link_web }}">{{ perfil.link_web }}</a>
+        </p>
+    {% endif %}
+    <a href="{% url 'editar_perfil' %}">Editar perfil</a>
+{% endblock %}

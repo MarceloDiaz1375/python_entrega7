@@ -13,7 +13,7 @@ class ContactoForm(forms.Form):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['titulo', 'contenido', 'autor', 'estado', 'imagen']
+        fields = ['titulo', 'contenido', 'estado', 'imagen']
         labels = {
             'titulo': 'Título del post',
             'contenido': 'Contenido del post',

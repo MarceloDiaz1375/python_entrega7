@@ -38,3 +38,40 @@ body {
     background-color: #222;
     color: white;
 }
+
+.messages {
+    list-style-type: none;
+    padding: 0;
+    background-color: green;
+    border-radius: 5px;
+}
+
+.messages li {
+    padding: 10px;
+    margin: 5px 0;
+    color: white;
+}
+
+.session {
+    float: right;
+    display: flex;
+}
+
+.inline {
+    display: inline;
+}
+
+.avatar-navbar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: flex;
+}
+
+.avatar-post {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+}

@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post
 from .forms import ContactoForm, PostForm
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 
 # Create your views here.
 def inicio(request):
@@ -38,15 +40,19 @@ def contacto(request):
 def detalle_post(request, slug):
     post = get_object_or_404(Post, slug=slug)
     return render(request, "posts/detalle_post.html", {
-        "post": post
+        "post": post,
+        "puede_editar": puede_editar_post(request.user, post)
     })
 
+@login_required
 def crear_post(request):
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect("lista_posts")
+            post = form.save(commit=False)
+            post.autor = request.user
+            post.save()
+            return redirect("detalle_post", slug=post.slug)
     else:
         form = PostForm()
 
@@ -56,8 +62,14 @@ def crear_post(request):
         "text_button": "Crear"
     })
 
+def puede_editar_post(user, post):
+    return user.is_authenticated and post.autor.id == user.id
+
+@login_required
 def editar_post(request, slug):
     post = get_object_or_404(Post, slug=slug)
+    if not puede_editar_post(request.user, post):
+        raise PermissionDenied("No tienes permiso para editar este post.")
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
@@ -73,8 +85,11 @@ def editar_post(request, slug):
         "text_button": "Actualizar"
     })
 
+@login_required
 def eliminar_post(request, slug):
     post = get_object_or_404(Post, slug=slug)
+    if not puede_editar_post(request.user, post):
+        raise PermissionDenied("No tienes permiso para eliminar este post.")
     if request.method == "POST":
         post.delete()
         return redirect("lista_posts")
