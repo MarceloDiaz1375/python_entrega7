@@ -8,6 +8,7 @@ Este repositorio contiene un sistema de blog web desarrollado en **Django**, con
 
 - **Proyecto principal (`blog_project`):** Contiene las configuraciones globales y el ruteo de URLs.
 - **Aplicación (`posts`):** Gestiona las publicaciones, sus formularios, vistas y plantillas.
+- **Aplicación (`cuentas`):** Gestiona el registro, el perfil de usuario y las funciones de autenticación.
 - **Configuración regional:** Español de Argentina (`es-ar`) y zona horaria `America/Argentina/Buenos_Aires`.
 
 ```text
@@ -23,7 +24,27 @@ Este repositorio contiene un sistema de blog web desarrollado en **Django**, con
 │   ├── urls.py
 │   └── wsgi.py
 ├── media/
-│   └── posts/ (archivos cargados; ignorado por Git)
+│   ├── avatares/ (avatares cargados; ignorado por Git)
+│   └── posts/ (imágenes de publicaciones; ignorado por Git)
+├── cuentas/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   ├── views.py
+│   ├── migrations/
+│   └── templates/
+│       ├── cuentas/
+│       │   └── registro.html
+│       └── registro/
+│           ├── editar_perfil.html
+│           ├── login.html
+│           ├── password_change.html
+│           ├── password_change_done.html
+│           └── perfil.html
 └── posts/
     ├── __init__.py
     ├── admin.py
@@ -34,10 +55,6 @@ Este repositorio contiene un sistema de blog web desarrollado en **Django**, con
     ├── urls.py
     ├── views.py
     ├── migrations/
-    │   ├── __init__.py
-    │   ├── 0001_initial.py
-    │   ├── 0002_post_imagen.py
-    │   └── 0003_post_slug.py
     ├── static/
     │   └── posts/
     │       └── css/
@@ -54,7 +71,7 @@ Este repositorio contiene un sistema de blog web desarrollado en **Django**, con
             └── post_form.html
 ```
 
-Las imágenes cargadas se almacenan en `media/posts/`. Esa carpeta contiene archivos subidos por los usuarios y está excluida del control de versiones; puede estar vacía al clonar el proyecto. También se omiten del esquema la base de datos local y el entorno virtual.
+Los archivos de medios se almacenan en `media/`: las imágenes de publicaciones en `media/posts/` y los avatares en `media/avatares/`. Estas carpetas contienen archivos subidos por los usuarios y están excluidas del control de versiones; pueden estar vacías al clonar el proyecto. También se omiten del esquema la base de datos local y el entorno virtual.
 
 ## 🖼️ Manejo de Imágenes
 
@@ -67,7 +84,7 @@ Cada publicación puede tener una imagen opcional. La implementación funciona a
 
 En `blog_project/settings.py`, `MEDIA_ROOT` apunta a `media/` en la raíz del proyecto y `MEDIA_URL` define la URL `/media/`. `blog_project/urls.py` sirve estos archivos durante el desarrollo solo cuando `DEBUG` está activado. En producción debe configurarse un servidor web o almacenamiento dedicado para los archivos multimedia.
 
-La dependencia `Pillow`, requerida por Django para trabajar con `ImageField`, está incluida en `requirements.txt`. La migración `0002_post_imagen.py` agrega el campo a la base de datos.
+La dependencia `Pillow`, requerida por Django para trabajar con `ImageField`, está incluida en `requirements.txt`.
 
 ## 🚀 Guía de Instalación y Ejecución
 
