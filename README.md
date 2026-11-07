@@ -118,13 +118,30 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-4. Aplicar las migraciones:
+4. Crear un archivo `.env` en la raíz del proyecto (al mismo nivel que `manage.py`) con las variables de configuración:
+
+```dotenv
+SECRET_KEY=pega-aqui-una-clave-secreta
+DEBUG=True
+```
+
+Genera un valor seguro para `SECRET_KEY` con este comando y cópialo al archivo:
+
+```bash
+python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+```
+
+`SECRET_KEY` es obligatoria. `DEBUG` acepta `True` o `False` y, si se omite, su valor predeterminado es `True` para facilitar el desarrollo local. En producción, usa `DEBUG=False` y configura los hosts permitidos según el entorno.
+
+El proyecto lee estas variables con `python-decouple`. El archivo `.env` está excluido de Git para evitar publicar claves secretas; crea uno en cada entorno y no subas sus valores al repositorio.
+
+5. Aplicar las migraciones:
 
 ```bash
 python manage.py migrate
 ```
 
-5. Iniciar el servidor de desarrollo:
+6. Iniciar el servidor de desarrollo:
 
 ```bash
 python manage.py runserver
